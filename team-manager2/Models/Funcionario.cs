@@ -7,19 +7,19 @@ namespace team_manager2.Models
 {
     public class Funcionario
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string cargo { get; set; }
-        public string email { get; set; }
-        public string equipe_id { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Cargo { get; set; }
+        public string Email { get; set; }
+        public string Equipe_id { get; set; }
 
-        public Funcionario(int Id, string Nome, string Cargo, string Equipe_id, string Email = null)
+        public Funcionario(int id, string nome, string cargo, string equipe_id, string email = null)
         {
-            this.id = Id;
-            this.nome = Nome;
-            this.cargo = cargo;
-            this.equipe_id = Equipe_id;
-            this.email = Email;
+            this.Id = id;
+            this.Nome = nome;
+            this.Cargo = cargo;
+            this.Equipe_id = equipe_id;
+            this.Email = email;
         }
     }
 }
