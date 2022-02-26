@@ -85,10 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\funcionariosController.cs" />
+    <Compile Include="Controllers\EquipeController.cs" />
+    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Equipe.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
