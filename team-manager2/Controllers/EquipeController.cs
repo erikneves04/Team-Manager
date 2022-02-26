@@ -18,19 +18,19 @@ namespace team_manager2.Controllers
             return equipes;
         }
 
-        public void Post(string nome)
+        public void Post(string nome, string setor, int[] idFuncionarios = null)
         {
-            if (!string.IsNullOrEmpty(nome))
+            if (!string.IsNullOrEmpty(nome) || !string.IsNullOrEmpty(setor))
             {
-                equipes.Add(new Equipe(nome));
-            }
-        }
-
-        public void Post(string nome, int[] idFuncionarios)
-        {
-            if (!string.IsNullOrEmpty(nome) )
-            {
-                equipes.Add(new Equipe(nome, idFuncionarios));
+                if(idFuncionarios == null)
+                {
+                    equipes.Add(new Equipe(nome, setor));
+                }
+                else
+                {
+                    equipes.Add(new Equipe(nome, setor, idFuncionarios));
+                }
+                
             }
         }
 
