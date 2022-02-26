@@ -13,7 +13,15 @@ namespace team_manager2.Models
         public string Email { get; set; }
         public int Equipe_id { get; set; }
 
-        public Funcionario(int id, string nome, string cargo, int equipe_id, string email = null)
+        public Funcionario(string nome, string cargo, int equipe_id, string email = null)
+        {
+            this.Nome = nome;
+            this.Cargo = cargo;
+            this.Equipe_id = equipe_id;
+            this.Email = email;
+        }
+
+        public Funcionario(string nome, string cargo, int equipe_id, string email = null, int id)
         {
             this.Id = id;
             this.Nome = nome;
