@@ -16,5 +16,29 @@ namespace team_manager2.Controllers
         {
             return funcionarios;
         }
+
+        public void Post(int id, string nome, string cargo, int equipe_id, string email = null)
+        {
+            if (!string.IsNullOrEmpty(nome) || !string.IsNullOrEmpty(cargo))
+            {
+                if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email))
+                {
+                    return;
+                }
+                funcionarios.Add(new Funcionario(id, nome, cargo, equipe_id, email));
+            }
+        }
+
+        public void Delete(string nomeAlvo)
+        {
+            foreach (Funcionario item in funcionarios)
+            {
+                if (item.Nome.Equals(nomeAlvo))
+                {
+                    funcionarios.Remove(item);
+                    break;
+                }
+            }
+        }
     }
 }

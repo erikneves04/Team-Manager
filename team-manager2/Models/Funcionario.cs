@@ -11,9 +11,9 @@ namespace team_manager2.Models
         public string Nome { get; set; }
         public string Cargo { get; set; }
         public string Email { get; set; }
-        public string Equipe_id { get; set; }
+        public int Equipe_id { get; set; }
 
-        public Funcionario(int id, string nome, string cargo, string equipe_id, string email = null)
+        public Funcionario(int id, string nome, string cargo, int equipe_id, string email = null)
         {
             this.Id = id;
             this.Nome = nome;
