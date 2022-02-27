@@ -12,22 +12,22 @@ namespace team_manager2.Models
         public string Nome { get; set; }
         public string Cargo { get; set; }
         public string Email { get; set; }
-        public int Equipe_id { get; set; }
+        public Equipe Equipe { get; set; }
 
-        public Funcionario(string nome, string cargo, int equipe_id, string email = null)
+        public Funcionario(string nome, string cargo, Equipe equipe, string email = null)
         {
             this.Nome = nome;
             this.Cargo = cargo;
-            this.Equipe_id = equipe_id;
+            this.Equipe = equipe;
             this.Email = email;
         }
 
-        public Funcionario(string nome, string cargo, int equipe_id, string email = null, int id = -1)
+        public Funcionario(string nome, string cargo, Equipe equipe, string email = null, int id = -1)
         {
             this.Id = id;
             this.Nome = nome;
             this.Cargo = cargo;
-            this.Equipe_id = equipe_id;
+            this.Equipe = equipe;
             this.Email = email;
         }
     }

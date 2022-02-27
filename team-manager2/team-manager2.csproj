@@ -202,6 +202,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20220227155017_initial.cs" />
+    <Compile Include="Migrations\20220227155017_initial.designer.cs">
+      <DependentUpon>20220227155017_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\FuncionarioContextoModelSnapshot.cs" />
     <Compile Include="Models\Equipe.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

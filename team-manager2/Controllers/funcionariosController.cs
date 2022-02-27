@@ -23,7 +23,7 @@ namespace team_manager2.Controllers
             {
                 if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email)) return;
 
-                funcionarios.Add(new Funcionario(nome, cargo, equipe_id, email));
+                funcionarios.Add(new Funcionario(nome, cargo, EquipeController.GetById(equipe_id), email));
             }
         }
 
