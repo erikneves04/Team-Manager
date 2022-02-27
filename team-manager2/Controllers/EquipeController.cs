@@ -46,5 +46,16 @@ namespace team_manager2.Controllers
             }
         }
 
+        public static Equipe GetById(int id)
+        {
+            foreach (Equipe item in equipes)
+            {
+                if(item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 }
