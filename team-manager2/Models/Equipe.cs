@@ -11,19 +11,12 @@ namespace team_manager2.Models
         public string Nome { get; set; }
         public string Setor { get; set; }
 
-        public List<int> FuncionariosId = new List<int>();
-
         public Equipe(string nome, string setor)
         {
             this.Nome = nome;
             this.Setor = setor;
         }
 
-        public Equipe(string nome, string setor, int[] idFuncionarios)
-        {
-            this.Nome = nome;
-            this.Setor = setor;
-            foreach (int item in idFuncionarios) this.FuncionariosId.Add(item);
-        }
+
     }
 }

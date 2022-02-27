@@ -14,7 +14,7 @@ namespace team_manager2.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=LocomotivaAppTest;Data Source=ERIK");
+            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=LocomotivaTestApp;Data Source=ERIK");
         }
 
     }
