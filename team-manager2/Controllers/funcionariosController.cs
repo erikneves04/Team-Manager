@@ -8,6 +8,7 @@ namespace team_manager2.Controllers
 {
     public class FuncionariosController : ApiController
     {
+        /* Conexão com o DataBase */
         public static FuncionarioContexto _context;
 
         public FuncionariosController()
@@ -15,11 +16,17 @@ namespace team_manager2.Controllers
             _context = EquipeController._context;
         }
 
+        /// <summary>
+        /// Responsável por retornar uma lista com os funcionários presentes no DataBase.
+        /// </summary>
         public List<Funcionario> Get()
         {
             return _context.Funcionarios.ToList();
         }
 
+        /// <summary>
+        /// Responsável por receber a requisição e inserir um novo funcionário no DataBase.
+        /// </summary>
         public string Post(string nome, string cargo, int equipe_id = -1, string email = null)
         {
             // Validação dos dados
@@ -38,15 +45,13 @@ namespace team_manager2.Controllers
             return "Funcionário cadastrado com sucesso!";
         }
 
-        public Equipe GetById(int id)
+        /// <summary>
+        /// Responsável por buscar e retornar uma equipe com base em seu identificador.
+        /// Retorna null caso o alvo não seja encontrado.
+        /// </summary>
+        private Equipe GetById(int id)
         {
-            foreach(Equipe item in _context.Equipes.ToList())
-            {
-                if(item.Id == id)
-                {
-                    return item;
-                }
-            }
+            foreach(Equipe item in _context.Equipes.ToList()) if(item.Id == id) return item;
             return null;
         }
     }

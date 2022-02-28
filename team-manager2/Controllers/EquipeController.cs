@@ -8,13 +8,20 @@ namespace team_manager2.Controllers
 {
     public class EquipeController : ApiController
     {
+        /* Conexão com o DataBase */
         public static FuncionarioContexto _context = new FuncionarioContexto();
 
+        /// <summary>
+        /// Responsável por retornar uma lista com as equipes presentes no DataBase.
+        /// </summary>
         public List<Equipe> Get()
         {
             return _context.Equipes.ToList();
         }
 
+        /// <summary>
+        /// Responsável por receber a requisição e inserir uma nova equipe no DataBase.
+        /// </summary>
         public string Post(string nome, string setor)
         {
             // Validação dos dados
