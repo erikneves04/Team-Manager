@@ -6,7 +6,7 @@ using team_manager2.Models;
 
 namespace team_manager2.Controllers
 {
-    public class EquipeController : ApiController
+    public class EquipesController : ApiController
     {
         /* Conexão com o DataBase */
         public static FuncionarioContexto _context = new FuncionarioContexto();

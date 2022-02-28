@@ -196,7 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\EquipeController.cs" />
+    <Compile Include="Controllers\EquipesController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Data\FuncionarioContexto.cs" />
     <Compile Include="Global.asax.cs">

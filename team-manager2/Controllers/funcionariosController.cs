@@ -13,7 +13,7 @@ namespace team_manager2.Controllers
 
         public FuncionariosController()
         {
-            _context = EquipeController._context;
+            _context = EquipesController._context;
         }
 
         /// <summary>
