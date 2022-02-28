@@ -11,34 +11,39 @@ namespace team_manager2.Controllers
 {
     public class FuncionariosController : ApiController
     {
-        private static List<Funcionario> funcionarios = new List<Funcionario>();
+        //private static List<Funcionario> funcionarios = new List<Funcionario>();
+        public static FuncionarioContexto _context;
+
+        public FuncionariosController()
+        {
+            _context = EquipeController._context;
+        }
 
         public List<Funcionario> Get()
         {
-            return funcionarios;
+            return _context.Funcionarios.ToList();
         }
 
         public void Post(string nome, string cargo, int equipe_id, string email = null)
         {
-            if (!string.IsNullOrEmpty(nome) || !string.IsNullOrEmpty(cargo))
+            if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(cargo))
             {
                 if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email)) return;
-
-                funcionarios.Add(new Funcionario(nome, cargo, equipe_id,EquipeController.GetById(equipe_id), email));
+                _context.Funcionarios.Add(new Funcionario(nome, cargo, equipe_id,this.GetById(equipe_id), email));
+                _context.SaveChanges();
             }
-            
         }
 
-        public void Delete(string nome)
+        public Equipe GetById(int id)
         {
-            foreach (Funcionario item in funcionarios)
+            foreach(Equipe item in _context.Equipes.ToList())
             {
-                if (item.Nome.Equals(nome))
+                if(item.Id == id)
                 {
-                    funcionarios.Remove(item);
-                    break;
+                    return item;
                 }
             }
+            return null;
         }
     }
 }

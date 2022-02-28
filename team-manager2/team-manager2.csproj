@@ -202,17 +202,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20220227155017_initial.cs" />
-    <Compile Include="Migrations\20220227155017_initial.designer.cs">
-      <DependentUpon>20220227155017_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20220227162735_Relacao_equipe-funcionario.cs" />
-    <Compile Include="Migrations\20220227162735_Relacao_equipe-funcionario.designer.cs">
-      <DependentUpon>20220227162735_Relacao_equipe-funcionario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20220227190355_initial2.cs" />
-    <Compile Include="Migrations\20220227190355_initial2.designer.cs">
-      <DependentUpon>20220227190355_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\20220228172115_Final.cs" />
+    <Compile Include="Migrations\20220228172115_Final.designer.cs">
+      <DependentUpon>20220228172115_Final.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\FuncionarioContextoModelSnapshot.cs" />
     <Compile Include="Models\Equipe.cs" />

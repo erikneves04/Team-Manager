@@ -9,18 +9,12 @@ namespace team_manager2.Data
 {
     public class FuncionarioContexto : DbContext
     {
-        //public static FuncionarioContexto Contexto;
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Equipe> Equipes { get; set; }
 
-        /*public FuncionarioContexto()
-        {
-            FuncionarioContexto.Contexto = this;
-        }*/
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=LocomotivaTestApp;Data Source=ERIK");
+            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=LocomotivaTeamManager;Data Source=ERIK");
         }
 
     }

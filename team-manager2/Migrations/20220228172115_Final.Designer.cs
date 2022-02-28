@@ -10,8 +10,8 @@ using team_manager2.Data;
 namespace team_manager2.Migrations
 {
     [DbContext(typeof(FuncionarioContexto))]
-    [Migration("20220227190355_initial2")]
-    partial class initial2
+    [Migration("20220228172115_Final")]
+    partial class Final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

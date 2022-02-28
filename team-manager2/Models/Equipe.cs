@@ -16,10 +16,5 @@ namespace team_manager2.Models
             this.Nome = nome;
             this.Setor = setor;
         }
-
-        public void Save()
-        {
-            //var db = new BaseContext();
-        }
     }
 }
