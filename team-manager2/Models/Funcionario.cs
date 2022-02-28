@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using team_manager2.Controllers;
-
-namespace team_manager2.Models
+﻿namespace team_manager2.Models
 {
     public class Funcionario
     {

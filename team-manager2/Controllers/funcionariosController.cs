@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using team_manager2.Data;
 using team_manager2.Models;
@@ -11,7 +8,6 @@ namespace team_manager2.Controllers
 {
     public class FuncionariosController : ApiController
     {
-        //private static List<Funcionario> funcionarios = new List<Funcionario>();
         public static FuncionarioContexto _context;
 
         public FuncionariosController()
@@ -24,14 +20,22 @@ namespace team_manager2.Controllers
             return _context.Funcionarios.ToList();
         }
 
-        public void Post(string nome, string cargo, int equipe_id, string email = null)
+        public string Post(string nome, string cargo, int equipe_id = -1, string email = null)
         {
-            if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(cargo))
+            // Validação dos dados
+            if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(cargo) && !(equipe_id == -1))
             {
-                if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email)) return;
+                // Exigência da inclusão de email para gerente
+                if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email)) return "O cargo de gerente exige a inserção de um email.";
+                
                 _context.Funcionarios.Add(new Funcionario(nome, cargo, equipe_id,this.GetById(equipe_id), email));
                 _context.SaveChanges();
             }
+            else
+            {
+                return "Essa requisição exige o envio completos(nome,cargo,identificador da equipe) dos dados desse desse funcionário!";
+            }
+            return "Funcionário cadastrado com sucesso!";
         }
 
         public Equipe GetById(int id)
