@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using team_manager2.Data;
 using team_manager2.Models;
 
 namespace team_manager2.Controllers
@@ -25,6 +26,7 @@ namespace team_manager2.Controllers
 
                 funcionarios.Add(new Funcionario(nome, cargo, equipe_id,EquipeController.GetById(equipe_id), email));
             }
+            
         }
 
         public void Delete(string nome)

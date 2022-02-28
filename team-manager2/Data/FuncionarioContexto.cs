@@ -9,8 +9,14 @@ namespace team_manager2.Data
 {
     public class FuncionarioContexto : DbContext
     {
+        //public static FuncionarioContexto Contexto;
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Equipe> Equipes { get; set; }
+
+        /*public FuncionarioContexto()
+        {
+            FuncionarioContexto.Contexto = this;
+        }*/
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

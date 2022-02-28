@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using team_manager2.Data;
 using team_manager2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace team_manager2.Controllers
 {
@@ -21,9 +23,20 @@ namespace team_manager2.Controllers
         public void Post(string nome, string setor)
         {
             if (!string.IsNullOrEmpty(nome) || !string.IsNullOrEmpty(setor))
-            {     
-                equipes.Add(new Equipe(nome, setor));
+            {
+                Equipe aux = new Equipe(nome, setor);
+                equipes.Add(aux);
+                /*if(FuncionarioContexto.Contexto == null)
+                {
+                    equipes.Add(new Equipe("01", "01"));
+                }else if (FuncionarioContexto.Contexto.Equipes == null)
+                {
+                    equipes.Add(new Equipe("02", "02"));
+                }*/
+                //FuncionarioContexto.Contexto.Equipes.Add(aux);
+
             }
+            
         }
 
         public void Delete(string nome)
