@@ -11,9 +11,9 @@ namespace Team_Manager.Controllers
     {
         private readonly TeamManagerContext _context;
 
-        public FuncionariosController()
+        public FuncionariosController(TeamManagerContext context)
         {
-            _context = new TeamManagerContext();
+            _context = context;
         }
 
         // GET: api/Funcionarios
