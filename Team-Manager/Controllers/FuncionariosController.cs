@@ -73,9 +73,9 @@ namespace Team_Manager.Controllers
         {
             if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(cargo))
             {
-                if (cargo.ToLower().Equals("gerente") && !string.IsNullOrEmpty(email)) return BadRequest("O cargo de gerente exige a inclusão de um email!");
+                if (cargo.ToLower().Equals("gerente") && string.IsNullOrEmpty(email)) return BadRequest("O cargo de gerente exige a inclusão de um email!");
                 
-                Funcionario funcionario = new Funcionario(nome, cargo, Id_da_equipe, _context.Equipes.FindAsync(Id_da_equipe).Result, email);
+                Funcionario funcionario = new Funcionario(nome, cargo, Id_da_equipe, _context.Equipes.Where(x => x.Id == Id_da_equipe).FirstOrDefault(), email);
                 _context.Funcionarios.Add(funcionario);
                 await _context.SaveChangesAsync();
 
