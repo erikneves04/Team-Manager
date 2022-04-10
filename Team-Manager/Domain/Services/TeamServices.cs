@@ -17,10 +17,9 @@ public class TeamServices : ITeamServices
 
     public TeamViewModel Insert(TeamInsertUpdateViewModel model)
     {
-        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Description) || string.IsNullOrEmpty(model.Sector))
-            throw new InvalidDataException("Todos os campos são necessários para cadastrar um time.");
+        ValidateInsertUpdateData(model);
 
-        if(GetByNameAndSector(model.Name,model.Sector) != null)
+        if (GetByNameAndSector(model.Name,model.Sector) != null)
             throw new InvalidDataException("Já existe um time cadastrado com esse nome & setor.");
 
         var entity = ConvertToEntity(model);
@@ -33,11 +32,7 @@ public class TeamServices : ITeamServices
 
     public TeamViewModel Update(TeamInsertUpdateViewModel model, Guid id)
     {
-        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Description) || string.IsNullOrEmpty(model.Sector))
-            throw new InvalidDataException("Todos os campos são necessários para atualizar um time.");
-
-        if (id == Guid.Empty)
-            throw new InvalidDataException("O identificador é inválido.");
+        ValidateInsertUpdateData(model, id);
 
         var entity = Get(id);
         if (entity == null)
@@ -89,6 +84,15 @@ public class TeamServices : ITeamServices
     public TeamViewModel GetViewModel(Guid id)
     {
         return ConvertToViewModel(Get(id));
+    }
+
+    private void ValidateInsertUpdateData(TeamInsertUpdateViewModel model, Guid? id = null)
+    {
+        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Description) || string.IsNullOrEmpty(model.Sector))
+            throw new InvalidDataException("Todos os campos são necessários para atualizar um time.");
+
+        if (id != null && id == Guid.Empty)
+            throw new InvalidDataException("O identificador é inválido.");
     }
 
     private Team Get(Guid id)
