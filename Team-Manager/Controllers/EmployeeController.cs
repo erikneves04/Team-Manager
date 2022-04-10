@@ -37,7 +37,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<EmployeeViewModel> Post(EmployeeInsertUpdateViewModel model)
+    public ActionResult<EmployeeViewModel> Post([FromBody]EmployeeInsertUpdateViewModel model)
     {
         try
         {
@@ -51,7 +51,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<EmployeeViewModel> Put(EmployeeInsertUpdateViewModel model, Guid id)
+    public ActionResult<EmployeeViewModel> Put([FromBody]EmployeeInsertUpdateViewModel model, Guid id)
     {
         try
         {

@@ -4,9 +4,9 @@ namespace Team_Manager.Domain.ViewModels;
 
 public abstract class TeamBaseViewModel
 {
-    public string Name;
-    public string Sector;
-    public string Description;
+    public string Name { get; set; }
+    public string Sector { get; set; }
+    public string Description { get; set; }
 }
 
 public class TeamViewModel : TeamBaseViewModel

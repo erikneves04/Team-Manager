@@ -37,7 +37,7 @@ public class TeamController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<TeamViewModel> Post(TeamInsertUpdateViewModel model)
+    public ActionResult<TeamViewModel> Post([FromBody]TeamInsertUpdateViewModel model)
     {
         try
         {
@@ -51,7 +51,7 @@ public class TeamController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<TeamViewModel> Put(TeamInsertUpdateViewModel model, Guid id)
+    public ActionResult<TeamViewModel> Put([FromBody]TeamInsertUpdateViewModel model, Guid id)
     {
         try
         {
