@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Team_Manager.Data;
+using Team_Manager.Domain.Interfaces.Services;
 using Team_Manager.Domain.Models;
 using Team_Manager.Domain.ViewModels;
 
 namespace Team_Manager.Domain.Services;
 
-public class EmployeeServices
+public class EmployeeServices : IEmployeeServices
 {
     private readonly TeamManagerContext _context;
-    private readonly TeamServices _teamServices;
+    private readonly ITeamServices _teamServices;
 
-    public EmployeeServices(TeamManagerContext context, TeamServices teamServices)
+    public EmployeeServices(TeamManagerContext context, ITeamServices teamServices)
     {
         _context = context;
         _teamServices = teamServices;

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Team_Manager.Data;
+using Team_Manager.Domain.Interfaces.Services;
 using Team_Manager.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<TeamManagerContext>();
 
-builder.Services.AddScoped<TeamServices, TeamServices>();
-builder.Services.AddScoped<EmployeeServices, EmployeeServices>();
+builder.Services.AddScoped<ITeamServices, TeamServices>();
+builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
 //builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

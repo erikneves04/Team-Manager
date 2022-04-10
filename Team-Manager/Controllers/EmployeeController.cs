@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Team_Manager.Domain.Interfaces.Services;
 using Team_Manager.Domain.Services;
 using Team_Manager.Domain.ViewModels;
 
@@ -8,9 +9,9 @@ namespace Team_Manager.Controllers;
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
 {
-    private readonly EmployeeServices _services;
+    private readonly IEmployeeServices _services;
 
-    public EmployeeController(EmployeeServices services)
+    public EmployeeController(IEmployeeServices services)
     {
         _services = services;
     }
