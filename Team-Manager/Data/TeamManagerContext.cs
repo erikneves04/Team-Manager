@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Team_Manager.Models;
+using Team_Manager.Domain.Models;
 
 namespace Team_Manager.Data
 {
     public class TeamManagerContext : DbContext
     {
-        public DbSet<Funcionario> Funcionarios { get; set; }
-        public DbSet<Equipe> Equipes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
