@@ -8,10 +8,12 @@ namespace Team_Manager.Domain.Services;
 public class TeamServices
 {
     private readonly TeamManagerContext _context;
+    private readonly EmployeeServices _employeeServices;
 
-    public TeamServices(TeamManagerContext context)
+    public TeamServices(TeamManagerContext context, EmployeeServices employeeServices)
     {
         _context = context;
+        _employeeServices = employeeServices;
     }
 
     public TeamViewModel Insert(TeamInsertUpdateViewModel model)
@@ -49,7 +51,7 @@ public class TeamServices
         entity.Description = model.Description;
         entity.Sector = model.Sector;
 
-        _context.Teams.Add(entity);
+        _context.Teams.Update(entity);
         _context.SaveChanges();
 
         return ConvertToViewModel(entity);
@@ -64,9 +66,8 @@ public class TeamServices
         if(entity == null)
             throw new InvalidDataException("Nenhum time com esse identificador foi encontrado.");
 
-        // TODO: Verificar se há algum funcionário cadastrado nesse time e impedir a remoção
-        // if(_employeeServices.GetEmployesByTeamId(id).Any())
-        //      throw new InvalidDataException("Há funcionários cadastrados nesse time e, por isso, não foi possível remove-lo..");
+         if(_employeeServices.GetEmployesByTeamId(id).Any())
+              throw new InvalidDataException("Há funcionários cadastrados nesse time e, por isso, não foi possível remove-lo..");
 
         _context.Teams.Remove(entity);
         _context.SaveChanges();
@@ -79,6 +80,11 @@ public class TeamServices
             ?.Include(e => e.Employees)
             ?.Select(e => new TeamViewModel(e))
             ?.ToList();
+    }
+
+    public bool Exist(Guid id)
+    {
+        return (Get(id) != null);
     }
 
     private Team Get(Guid id)

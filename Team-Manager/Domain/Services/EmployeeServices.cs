@@ -8,10 +8,12 @@ namespace Team_Manager.Domain.Services;
 public class EmployeeServices
 {
     private readonly TeamManagerContext _context;
+    private readonly TeamServices _teamServices;
 
-    public EmployeeServices(TeamManagerContext context)
+    public EmployeeServices(TeamManagerContext context, TeamServices teamServices)
     {
         _context = context;
+        _teamServices = teamServices;
     }
 
     public EmployeeViewModel Insert(EmployeeInsertUpdateViewModel model)
@@ -19,8 +21,8 @@ public class EmployeeServices
         if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Function) || model.TeamId == Guid.Empty)
             throw new InvalidDataException("Os campos Name, Function e TeamId são necessários para cadastrar um funcionário.");
 
-        //if (!_teamServices.Exist(model.TeamId))
-        //    throw new InvalidDataException("O identificador da equipe é inválido.");
+        if (!_teamServices.Exist(model.TeamId))
+            throw new InvalidDataException("O identificador da equipe é inválido.");
 
         var entity = ConvertToEntity(model);
 
@@ -90,6 +92,11 @@ public class EmployeeServices
     private Employee GetByName(string name)
     {
         return _context.Employees.FirstOrDefault(e => e.Name == name);
+    }
+
+    public ICollection<Employee> GetEmployesByTeamId(Guid id)
+    {
+        return _context.Employees.Where(e => e.TeamId == id).ToList();
     }
 
     private static Employee ConvertToEntity(EmployeeInsertUpdateViewModel model)

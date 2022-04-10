@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Team_Manager.Data;
+using Team_Manager.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<TeamManagerContext>();
+
+builder.Services.AddScoped<TeamServices, TeamServices>();
+builder.Services.AddScoped<EmployeeServices, EmployeeServices>();
 //builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
