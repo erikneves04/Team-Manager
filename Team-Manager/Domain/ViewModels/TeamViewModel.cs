@@ -12,7 +12,7 @@ public abstract class TeamBaseViewModel
 public class TeamViewModel : TeamBaseViewModel
 {
     public TeamViewModel() { }
-    public TeamViewModel(Guid id, string name, string sector, string description, ICollection<Employee> employees = null)
+    public TeamViewModel(Guid id, string name, string sector, string description, ICollection<EmployeeInsertUpdateViewModel> employees = null)
     {
         Id = id;
         Name = name;
@@ -21,8 +21,17 @@ public class TeamViewModel : TeamBaseViewModel
         Employees = employees;
     }
 
+    public TeamViewModel(Team team)
+    {
+        Id = team.Id;
+        Name = team.Name;
+        Sector = team.Sector;
+        Description = team.Description;
+        Employees = team.Employees?.Select(e => new EmployeeInsertUpdateViewModel(e.Name,e.Function,e.Email,e.TeamId))?.ToList();
+    }
+
     public Guid Id { get; set; }
-    public ICollection<Employee> Employees { get; set; }
+    public ICollection<EmployeeInsertUpdateViewModel> Employees { get; set; }
 }
 
 public class TeamInsertUpdateViewModel : TeamBaseViewModel
