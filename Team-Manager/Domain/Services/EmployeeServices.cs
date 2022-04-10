@@ -19,12 +19,7 @@ public class EmployeeServices : IEmployeeServices
 
     public EmployeeViewModel Insert(EmployeeInsertUpdateViewModel model)
     {
-        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Function) || model.TeamId == Guid.Empty)
-            throw new InvalidDataException("Os campos Name, Function e TeamId são necessários para cadastrar um funcionário.");
-
-        if (!_teamServices.Exist(model.TeamId))
-            throw new InvalidDataException("O identificador da equipe é inválido.");
-
+        ValidateInsertUpdateData(model);
         var entity = ConvertToEntity(model);
 
         _context.Employees.Add(entity);
@@ -35,14 +30,7 @@ public class EmployeeServices : IEmployeeServices
 
     public EmployeeViewModel Update(EmployeeInsertUpdateViewModel model, Guid id)
     {
-        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Function) || model.TeamId == Guid.Empty)
-            throw new InvalidDataException("Os campos Name, Function e TeamId são necessários para cadastrar um funcionário.");
-
-        if (id == Guid.Empty)
-            throw new InvalidDataException("O identificador é inválido.");
-
-        if (!_teamServices.Exist(model.TeamId))
-            throw new InvalidDataException("O identificador da equipe é inválido.");
+        ValidateInsertUpdateData(model, id);
 
         var entity = Get(id);
         if (entity == null)
@@ -50,7 +38,6 @@ public class EmployeeServices : IEmployeeServices
 
         if (id != entity.Id)
             throw new InvalidDataException("Não é possível alterar o identificador de um funcionário.");
-
 
         entity.Email = model.Email;
         entity.Name = model.Name;
@@ -85,6 +72,11 @@ public class EmployeeServices : IEmployeeServices
             ?.ToList();
     }
 
+    public ICollection<Employee> GetEmployesByTeamId(Guid id)
+    {
+        return _context.Employees.Where(e => e.TeamId == id).ToList();
+    }
+
     public EmployeeViewModel GetViewModel(Guid id)
     {
         return ConvertToViewModel(Get(id));
@@ -95,9 +87,16 @@ public class EmployeeServices : IEmployeeServices
         return _context.Employees.FirstOrDefault(e => e.Id == id);
     }
 
-    public ICollection<Employee> GetEmployesByTeamId(Guid id)
+    private void ValidateInsertUpdateData(EmployeeInsertUpdateViewModel model, Guid? id = null)
     {
-        return _context.Employees.Where(e => e.TeamId == id).ToList();
+        if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Function) || model.TeamId == Guid.Empty)
+            throw new InvalidDataException("Os campos Name, Function e TeamId são necessários para cadastrar um funcionário.");
+
+        if (!_teamServices.Exist(model.TeamId))
+            throw new InvalidDataException("O identificador da equipe é inválido.");
+
+        if (id != null && id == Guid.Empty)
+            throw new InvalidDataException("O identificador é inválido.");
     }
 
     private static Employee ConvertToEntity(EmployeeInsertUpdateViewModel model)
