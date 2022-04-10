@@ -40,8 +40,8 @@ public class EmployeeServices
         if (id == Guid.Empty)
             throw new InvalidDataException("O identificador é inválido.");
 
-        //if (!_teamServices.Exist(model.TeamId))
-        //    throw new InvalidDataException("O identificador da equipe é inválido.");
+        if (!_teamServices.Exist(model.TeamId))
+            throw new InvalidDataException("O identificador da equipe é inválido.");
 
         var entity = Get(id);
         if (entity == null)
@@ -82,6 +82,11 @@ public class EmployeeServices
             ?.Include(e => e.Team)
             ?.Select(e => new EmployeeViewModel(e))
             ?.ToList();
+    }
+
+    public EmployeeViewModel GetViewModel(Guid id)
+    {
+        return ConvertToViewModel(Get(id));
     }
 
     private Employee Get(Guid id)
