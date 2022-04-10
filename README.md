@@ -16,4 +16,4 @@ A branch 'Master' desse projeto sempre será a versão mais recente desenvolvida
 ## Datas/Branchs:
 - 28/02/2022 -> Versão inicial do projeto, primeiro contato com o ASP.NET;
 - 05/03/2022 -> Segunda versão do projeto, incremento de boas práticas e melhorias básicas;
-- ??/04/2022 -> Terceira versão do projeto, incorporação de boas práticas adquiridas em um mês de trabalho;
+- 10/04/2022 -> Terceira versão do projeto, incorporação de boas práticas após um mês de trabalho;
