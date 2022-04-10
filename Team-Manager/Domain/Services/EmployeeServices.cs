@@ -95,11 +95,6 @@ public class EmployeeServices : IEmployeeServices
         return _context.Employees.FirstOrDefault(e => e.Id == id);
     }
 
-    private Employee GetByName(string name)
-    {
-        return _context.Employees.FirstOrDefault(e => e.Name == name);
-    }
-
     public ICollection<Employee> GetEmployesByTeamId(Guid id)
     {
         return _context.Employees.Where(e => e.TeamId == id).ToList();
