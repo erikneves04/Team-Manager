@@ -87,6 +87,11 @@ public class TeamServices
         return (Get(id) != null);
     }
 
+    public TeamViewModel GetViewModel(Guid id)
+    {
+        return ConvertToViewModel(Get(id));
+    }
+
     private Team Get(Guid id)
     {
         return _context.Teams.FirstOrDefault(e => e.Id == id);
