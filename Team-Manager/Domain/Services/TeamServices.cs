@@ -9,12 +9,10 @@ namespace Team_Manager.Domain.Services;
 public class TeamServices : ITeamServices
 {
     private readonly TeamManagerContext _context;
-    private readonly IEmployeeServices _employeeServices;
 
-    public TeamServices(TeamManagerContext context, IEmployeeServices employeeServices)
+    public TeamServices(TeamManagerContext context)
     {
         _context = context;
-        _employeeServices = employeeServices;
     }
 
     public TeamViewModel Insert(TeamInsertUpdateViewModel model)
@@ -67,7 +65,7 @@ public class TeamServices : ITeamServices
         if(entity == null)
             throw new InvalidDataException("Nenhum time com esse identificador foi encontrado.");
 
-         if(_employeeServices.GetEmployesByTeamId(id).Any())
+         if(entity.Employees.Any())
               throw new InvalidDataException("Há funcionários cadastrados nesse time e, por isso, não foi possível remove-lo..");
 
         _context.Teams.Remove(entity);
