@@ -20,7 +20,7 @@ public class EmployeeController : ControllerBase
     {
         var content = _services.GetAll();
         if (content == null)
-            return NotFound("Nenhum funcionário foi encontrado");
+            return NotFound("Nenhum funcionário foi encontrado.");
 
         return new ActionResult<ICollection<EmployeeViewModel>>(content);
     }
@@ -30,7 +30,7 @@ public class EmployeeController : ControllerBase
     {
         var content = _services.GetViewModel(id);       
         if(content == null)
-            return NotFound("O funcionário não foi encontrado");
+            return NotFound("O funcionário não foi encontrado.");
 
         return new ActionResult<EmployeeViewModel>(content);      
     }
