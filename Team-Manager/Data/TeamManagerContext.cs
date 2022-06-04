@@ -5,6 +5,7 @@ namespace Team_Manager.Data
 {
     public class TeamManagerContext : DbContext
     {
+        public TeamManagerContext() { } // For tests
         public TeamManagerContext(DbContextOptions<TeamManagerContext> options) : base(options)
         {
 
