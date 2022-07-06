@@ -5,10 +5,10 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-RUN dotnet build "Team-Manager.csproj" -c Release -o /build
+RUN dotnet build "Team-Manager.csproj" -c Release -o 
 
 FROM build AS publish
-RUN dotnet publish "Team-Manager.csproj" -c Release -o /publish
+RUN dotnet publish "Team-Manager.csproj" -c Release -o 
 
 FROM base AS final
 RUN ["apt-get", "update"]
