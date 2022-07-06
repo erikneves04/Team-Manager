@@ -5,13 +5,10 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-RUN dotnet restore "Team-Manager.csproj"
-COPY . .
-RUN dotnet build "Team-Manager.csproj" -c Release -o /app/build
+RUN dotnet build "Team-Manager.csproj" -c Release -o /build
 
 FROM build AS publish
-RUN dotnet publish "Team-Manager.csproj" -c Release -o /app/publish
+RUN dotnet publish "Team-Manager.csproj" -c Release -o /publish
 
 FROM base AS final
 RUN ["apt-get", "update"]
@@ -20,8 +17,7 @@ RUN ["apt-get", "-y", "install", "xvfb", "libfontconfig", "wkhtmltopdf"]
 RUN ["apt-get", "-y", "install", "libc6-dev"]
 RUN ["apt-get", "-y", "install", "openssl"]
 RUN ["apt-get", "-y", "install", "libssl1.1"]
-WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /publish .
 COPY --from=publish /src/libwkhtmltox.dll libwkhtmltox.dll
 COPY --from=publish /src/libwkhtmltox.so libwkhtmltox.so
 COPY --from=publish /src/libwkhtmltox.dylib libwkhtmltox.dylib
