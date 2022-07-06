@@ -6,10 +6,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Team-Manager.csproj", "API/"]
 RUN dotnet restore "Team-Manager.csproj"
 COPY . .
-WORKDIR "/src/API"
 RUN dotnet build "Team-Manager.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -24,8 +22,8 @@ RUN ["apt-get", "-y", "install", "openssl"]
 RUN ["apt-get", "-y", "install", "libssl1.1"]
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=publish /src/API/libwkhtmltox.dll libwkhtmltox.dll
-COPY --from=publish /src/API/libwkhtmltox.so libwkhtmltox.so
-COPY --from=publish /src/API/libwkhtmltox.dylib libwkhtmltox.dylib
+COPY --from=publish /src/libwkhtmltox.dll libwkhtmltox.dll
+COPY --from=publish /src/libwkhtmltox.so libwkhtmltox.so
+COPY --from=publish /src/libwkhtmltox.dylib libwkhtmltox.dylib
 
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet Team-Manager.dll
